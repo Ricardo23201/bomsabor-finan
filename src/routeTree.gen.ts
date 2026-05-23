@@ -9,8 +9,56 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReservasRouteImport } from './routes/reservas'
+import { Route as RelatoriosRouteImport } from './routes/relatorios'
+import { Route as PessoalRouteImport } from './routes/pessoal'
+import { Route as MetasRouteImport } from './routes/metas'
+import { Route as FechamentoRouteImport } from './routes/fechamento'
+import { Route as EntradasRouteImport } from './routes/entradas'
+import { Route as DespesasRouteImport } from './routes/despesas'
+import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ReservasRoute = ReservasRouteImport.update({
+  id: '/reservas',
+  path: '/reservas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelatoriosRoute = RelatoriosRouteImport.update({
+  id: '/relatorios',
+  path: '/relatorios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PessoalRoute = PessoalRouteImport.update({
+  id: '/pessoal',
+  path: '/pessoal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetasRoute = MetasRouteImport.update({
+  id: '/metas',
+  path: '/metas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FechamentoRoute = FechamentoRouteImport.update({
+  id: '/fechamento',
+  path: '/fechamento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EntradasRoute = EntradasRouteImport.update({
+  id: '/entradas',
+  path: '/entradas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DespesasRoute = DespesasRouteImport.update({
+  id: '/despesas',
+  path: '/despesas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguracoesRoute = ConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +67,144 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/despesas': typeof DespesasRoute
+  '/entradas': typeof EntradasRoute
+  '/fechamento': typeof FechamentoRoute
+  '/metas': typeof MetasRoute
+  '/pessoal': typeof PessoalRoute
+  '/relatorios': typeof RelatoriosRoute
+  '/reservas': typeof ReservasRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/despesas': typeof DespesasRoute
+  '/entradas': typeof EntradasRoute
+  '/fechamento': typeof FechamentoRoute
+  '/metas': typeof MetasRoute
+  '/pessoal': typeof PessoalRoute
+  '/relatorios': typeof RelatoriosRoute
+  '/reservas': typeof ReservasRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/despesas': typeof DespesasRoute
+  '/entradas': typeof EntradasRoute
+  '/fechamento': typeof FechamentoRoute
+  '/metas': typeof MetasRoute
+  '/pessoal': typeof PessoalRoute
+  '/relatorios': typeof RelatoriosRoute
+  '/reservas': typeof ReservasRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/configuracoes'
+    | '/despesas'
+    | '/entradas'
+    | '/fechamento'
+    | '/metas'
+    | '/pessoal'
+    | '/relatorios'
+    | '/reservas'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/configuracoes'
+    | '/despesas'
+    | '/entradas'
+    | '/fechamento'
+    | '/metas'
+    | '/pessoal'
+    | '/relatorios'
+    | '/reservas'
+  id:
+    | '__root__'
+    | '/'
+    | '/configuracoes'
+    | '/despesas'
+    | '/entradas'
+    | '/fechamento'
+    | '/metas'
+    | '/pessoal'
+    | '/relatorios'
+    | '/reservas'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConfiguracoesRoute: typeof ConfiguracoesRoute
+  DespesasRoute: typeof DespesasRoute
+  EntradasRoute: typeof EntradasRoute
+  FechamentoRoute: typeof FechamentoRoute
+  MetasRoute: typeof MetasRoute
+  PessoalRoute: typeof PessoalRoute
+  RelatoriosRoute: typeof RelatoriosRoute
+  ReservasRoute: typeof ReservasRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reservas': {
+      id: '/reservas'
+      path: '/reservas'
+      fullPath: '/reservas'
+      preLoaderRoute: typeof ReservasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relatorios': {
+      id: '/relatorios'
+      path: '/relatorios'
+      fullPath: '/relatorios'
+      preLoaderRoute: typeof RelatoriosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pessoal': {
+      id: '/pessoal'
+      path: '/pessoal'
+      fullPath: '/pessoal'
+      preLoaderRoute: typeof PessoalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metas': {
+      id: '/metas'
+      path: '/metas'
+      fullPath: '/metas'
+      preLoaderRoute: typeof MetasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fechamento': {
+      id: '/fechamento'
+      path: '/fechamento'
+      fullPath: '/fechamento'
+      preLoaderRoute: typeof FechamentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/entradas': {
+      id: '/entradas'
+      path: '/entradas'
+      fullPath: '/entradas'
+      preLoaderRoute: typeof EntradasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/despesas': {
+      id: '/despesas'
+      path: '/despesas'
+      fullPath: '/despesas'
+      preLoaderRoute: typeof DespesasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuracoes': {
+      id: '/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/configuracoes'
+      preLoaderRoute: typeof ConfiguracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +217,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConfiguracoesRoute: ConfiguracoesRoute,
+  DespesasRoute: DespesasRoute,
+  EntradasRoute: EntradasRoute,
+  FechamentoRoute: FechamentoRoute,
+  MetasRoute: MetasRoute,
+  PessoalRoute: PessoalRoute,
+  RelatoriosRoute: RelatoriosRoute,
+  ReservasRoute: ReservasRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
