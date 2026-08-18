@@ -20,7 +20,7 @@ import {
 } from "recharts";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [{ title: "Dashboard — Bom Sabor RS" }] }),
+  head: () => ({ meta: [{ title: "Visão geral — Bom Sabor RS" }] }),
   component: Dashboard,
 });
 
@@ -80,7 +80,7 @@ function Dashboard() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="font-display text-3xl font-semibold">Dashboard</h1>
+          <h1 className="font-display text-3xl font-semibold">Visão geral</h1>
           <p className="text-sm text-muted-foreground">Visão geral financeira de {monthLabel(month)}</p>
         </div>
         <div className="rounded-xl border bg-card px-4 py-2 text-sm shadow-card">
