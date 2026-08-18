@@ -21,10 +21,10 @@ import {
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [{ title: "Visão geral — Bom Sabor RS" }] }),
-  component: Dashboard,
+  component: Overview,
 });
 
-function Dashboard() {
+function Overview() {
   const state = useStore();
   const month = currentMonth();
   const revenue = selectMonthRevenue(state, month);
@@ -113,7 +113,13 @@ function Dashboard() {
         <StatCard label="Faturamento do mês" value={BRL(revenue)} icon={TrendingUp} accent="primary" />
         <StatCard label="Despesas totais" value={BRL(expenses)} icon={Receipt} accent="destructive" />
         <StatCard label="Lucro estimado" value={BRL(profit)} icon={Wallet} accent="gold" />
-        <StatCard label="Reserva acumulada" value={BRL(reservaTotal)} hint={`Meta ${BRL(state.settings.reserveGoal)}`} icon={PiggyBank} accent="primary" />
+        <StatCard
+          label="Reserva acumulada"
+          value={BRL(reservaTotal)}
+          hint={`Meta ${BRL(state.settings.reserveGoal)}`}
+          icon={PiggyBank}
+          accent="primary"
+        />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
@@ -139,11 +145,31 @@ function Dashboard() {
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.92 0.01 250)" />
                 <XAxis dataKey="month" stroke="oklch(0.5 0.02 255)" fontSize={12} />
-                <YAxis stroke="oklch(0.5 0.02 255)" fontSize={12} tickFormatter={(v) => `R$${(v / 1000).toFixed(0)}k`} />
-                <Tooltip formatter={(v: number) => BRL(v)} contentStyle={{ borderRadius: 12, border: "1px solid oklch(0.92 0.01 250)" }} />
+                <YAxis
+                  stroke="oklch(0.5 0.02 255)"
+                  fontSize={12}
+                  tickFormatter={(v) => `R$${(v / 1000).toFixed(0)}k`}
+                />
+                <Tooltip
+                  formatter={(v: number) => BRL(v)}
+                  contentStyle={{ borderRadius: 12, border: "1px solid oklch(0.92 0.01 250)" }}
+                />
                 <Legend />
-                <Area type="monotone" dataKey="faturamento" stroke="oklch(0.55 0.15 165)" fill="url(#g1)" strokeWidth={2} />
-                <Area type="monotone" dataKey="despesas" stroke="oklch(0.55 0.18 25)" fill="oklch(0.55 0.18 25)" fillOpacity={0.1} strokeWidth={2} />
+                <Area
+                  type="monotone"
+                  dataKey="faturamento"
+                  stroke="oklch(0.55 0.15 165)"
+                  fill="url(#g1)"
+                  strokeWidth={2}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="despesas"
+                  stroke="oklch(0.55 0.18 25)"
+                  fill="oklch(0.55 0.18 25)"
+                  fillOpacity={0.1}
+                  strokeWidth={2}
+                />
                 <Area type="monotone" dataKey="lucro" stroke="oklch(0.7 0.14 75)" fill="url(#g2)" strokeWidth={2} />
               </AreaChart>
             </ResponsiveContainer>
@@ -156,7 +182,9 @@ function Dashboard() {
           <div className="mt-4 space-y-2">
             <div className="flex items-baseline justify-between">
               <span className="font-display text-2xl font-semibold">{goalPct}%</span>
-              <span className="text-xs text-muted-foreground">{BRL(revenue)} / {BRL(state.settings.monthlyRevenueGoal)}</span>
+              <span className="text-xs text-muted-foreground">
+                {BRL(revenue)} / {BRL(state.settings.monthlyRevenueGoal)}
+              </span>
             </div>
             <Progress value={goalPct} className="h-2" />
           </div>
@@ -166,7 +194,9 @@ function Dashboard() {
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie data={byMethod} dataKey="value" nameKey="name" innerRadius={40} outerRadius={70} paddingAngle={3}>
-                    {byMethod.map((_, i) => <Cell key={i} fill={colors[i]} />)}
+                    {byMethod.map((_, i) => (
+                      <Cell key={i} fill={colors[i]} />
+                    ))}
                   </Pie>
                   <Tooltip formatter={(v: number) => BRL(v)} />
                 </PieChart>
